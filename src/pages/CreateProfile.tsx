@@ -4,18 +4,16 @@ function CreateProfile() {
   const cloudStorage = useCloudStorage();
 
   function chStage(step: number) {
-    console.log(step);
-    console.log(cloudStorage);
-
     cloudStorage.getValues(['stage'])
       .then((result) => {
         console.log(result);
-        if ('stage' in result) {
-          const newStage = Number.parseInt(result['stage']) + step;
-          cloudStorage.saveValue('stage', newStage.toString());
-        } else {
+        // first time
+        if (result['stage'] === '') {
           console.log('stage is not in storage, set it to 0');
           cloudStorage.saveValue('stage', '0');
+        } else {
+          const newStage = Number.parseInt(result['stage']) + step;
+          cloudStorage.saveValue('stage', newStage.toString());
         }
       });
   }
