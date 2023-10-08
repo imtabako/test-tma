@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   useBackButton,
   useWebApp,
@@ -77,11 +77,15 @@ function App() {
     // but let's follow React rules.
   }, [backButton, cloudStorage, initData, mainButton, storage, webApp]);
 
-  if (Object.keys(storage).length == 0) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (Object.keys(storage).length == 0 || +storage['stage'] < 4) {
     return (
       <>
         <div className="container">
-          <CreateProfile/>
+          <CreateProfile
+            cloudStorageAny={{cloudStorage}}
+          />
         </div>
       </>
     );
