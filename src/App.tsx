@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import {
   useBackButton,
   useWebApp,
@@ -9,6 +11,9 @@ import {
 } from '@tma.js/sdk-react';
 
 import './App.css';
+import Chats from './pages/Chats.tsx';
+import Profile from './pages/Profile.tsx';
+import Swipe from './pages/Swipe.tsx';
 
 function App() {
   const webApp = useWebApp();
@@ -17,10 +22,12 @@ function App() {
   const backButton = useBackButton();
   const cloudStorage = useCloudStorage();
 
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [storage, setStorage] = useState({});
 
   useClosingBehaviour();
+
+  const Tab = createBottomTabNavigator();
 
   useEffect(() => {
     webApp.ready();
@@ -55,9 +62,10 @@ function App() {
       });
     console.log('CloudStorage Done');
     console.log(storage);
+    console.log(Object.keys(storage).length);
 
     mainButton.setText('Upload Photo');
-    mainButton.show();
+    // mainButton.show();
 
     const listener = () => webApp.close();
     backButton.on('click', listener);
@@ -73,14 +81,13 @@ function App() {
 
   return (
     <>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Profile" component={Profile} />
+          <Tab.Screen name="Swipe" component={Swipe} />
+          <Tab.Screen name="Chats" component={Chats} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </>
   );
 }
