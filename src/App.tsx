@@ -39,17 +39,18 @@ function App() {
           return;
         }
 
-        return cloudStorage.getValues(keys);
-      })
-      .then(result => {
-        console.log('VALUES')
-        console.log(result);
+        cloudStorage.getValues(keys)
+          .then(result => {
+            console.log('VALUES')
+            console.log(result);
 
-        for (const key in result) {
-          const value = result[key];
-          console.log(key + ': ' + value);
-        }
-    });
+            for (const key in result) {
+              const value = result[key];
+              console.log(key + ': ' + value);
+            }
+          });
+      })
+    console.log('CloudStorage Done');
 
     mainButton.setText('Upload Photo');
     mainButton.show();
