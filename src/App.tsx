@@ -33,6 +33,7 @@ function App() {
     /* determine if user visits for the 1st time */
     cloudStorage.getKeys()
       .then(keys => {
+        console.log('KEYS, len = ' + keys.length);
         console.log(keys);
         if (keys.length === 0) {
           return;
@@ -41,6 +42,7 @@ function App() {
         return cloudStorage.getValues(keys);
       })
       .then(result => {
+        console.log('VALUES')
         console.log(result);
 
         for (const key in result) {
