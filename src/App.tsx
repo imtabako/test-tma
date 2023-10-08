@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {SDKProvider, useSDK, useBackButton, useWebApp, useMainButton} from '@tma.js/sdk-react';
+import { SDKProvider, useSDK, useBackButton, useWebApp, useMainButton } from '@tma.js/sdk-react';
 
 import './App.css'
 
