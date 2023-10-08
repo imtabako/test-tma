@@ -14,6 +14,7 @@ import Chats from './pages/Chats.tsx';
 import Profile from './pages/Profile.tsx';
 import Swipe from './pages/Swipe.tsx';
 import Navbar from "./Navbar.tsx";
+import CreateProfile from "./pages/CreateProfile.tsx";
 
 function App() {
   const webApp = useWebApp();
@@ -76,18 +77,28 @@ function App() {
     // but let's follow React rules.
   }, [backButton, cloudStorage, initData, mainButton, storage, webApp]);
 
-  return (
-    <>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Profile />} />
-          <Route path="/swipe" element={<Swipe />} />
-          <Route path="/chats" element={<Chats />} />
-        </Routes>
-      </div>
-      <Navbar />
-    </>
-  );
+  if (Object.keys(storage).length == 0) {
+    return (
+      <>
+        <div className="container">
+          <CreateProfile/>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="container">
+          <Routes>
+            <Route index path="/" element={<Profile/>}/>
+            <Route path="/swipe" element={<Swipe/>}/>
+            <Route path="/chats" element={<Chats/>}/>
+          </Routes>
+          <Navbar/>
+        </div>
+      </>
+    );
+  }
 }
 
 export default App
