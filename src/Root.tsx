@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { SDKProvider, useSDK } from '@tma.js/sdk-react';
-import { NavigationContainer } from "@react-navigation/native";
+import { BrowserRouter } from "react-router-dom";
 
 import App from "./App.tsx";
 
@@ -38,13 +38,13 @@ function Loader({children}: PropsWithChildren<{}>) {
 
 function Root() {
   return (
-    <NavigationContainer>
+    <BrowserRouter>
       <SDKProvider>
         <Loader>
           <App/>
         </Loader>
       </SDKProvider>
-    </NavigationContainer>
+    </BrowserRouter>
   );
 }
 

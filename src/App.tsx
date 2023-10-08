@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import {Route, Routes} from "react-router-dom";
 import {
   useBackButton,
   useWebApp,
@@ -14,6 +13,7 @@ import './App.css';
 import Chats from './pages/Chats.tsx';
 import Profile from './pages/Profile.tsx';
 import Swipe from './pages/Swipe.tsx';
+import Navbar from "./Navbar.tsx";
 
 function App() {
   const webApp = useWebApp();
@@ -22,12 +22,9 @@ function App() {
   const backButton = useBackButton();
   const cloudStorage = useCloudStorage();
 
-  // const [count, setCount] = useState(0);
   const [storage, setStorage] = useState({});
 
   useClosingBehaviour();
-
-  const Tab = createBottomTabNavigator();
 
   useEffect(() => {
     webApp.ready();
@@ -81,13 +78,14 @@ function App() {
 
   return (
     <>
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Profile" component={Profile} />
-          <Tab.Screen name="Swipe" component={Swipe} />
-          <Tab.Screen name="Chats" component={Chats} />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Profile />} />
+          <Route path="/swipe" element={<Swipe />} />
+          <Route path="/chats" element={<Chats />} />
+        </Routes>
+      </div>
+      <Navbar />
     </>
   );
 }
