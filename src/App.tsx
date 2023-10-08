@@ -4,7 +4,7 @@ import {
   useBackButton,
   useWebApp,
   useMainButton,
-  useClosingBehaviour,
+  // useClosingBehaviour,
   useInitData,
   useCloudStorage
 } from '@tma.js/sdk-react';
@@ -25,10 +25,12 @@ function App() {
 
   const [storage, setStorage] = useState({});
 
-  useClosingBehaviour();
+  // useClosingBehaviour();
 
   useEffect(() => {
     webApp.ready();
+
+    cloudStorage.deleteKeys(['stage']);
 
     /* get user init Data */
     console.log(initData);
