@@ -1,12 +1,8 @@
-import {CloudStorage} from "@tma.js/sdk-react";
+import {useCloudStorage} from "@tma.js/sdk-react";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-function CreateProfile({ cloudStorageProp }) {
-  const cloudStorage = cloudStorageProp as CloudStorage;
-  console.log(cloudStorageProp);
-  console.log(cloudStorage);
-  // const cloudStorage: CloudStorage = cloudStorageAny;
+function CreateProfile() {
+  const cloudStorage = useCloudStorage();
+
   function chStage(step: number) {
     console.log(step);
     console.log(cloudStorage);

@@ -83,9 +83,7 @@ function App() {
     return (
       <>
         <div className="container">
-          <CreateProfile
-            cloudStorageProp={{cloudStorage}}
-          />
+          <CreateProfile />
         </div>
       </>
     );
