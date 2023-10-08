@@ -1,4 +1,4 @@
-import { React, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { SDKProvider, useSDK } from '@tma.js/sdk-react';
 
 import App from "./App.tsx";
