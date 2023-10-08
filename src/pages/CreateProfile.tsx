@@ -1,22 +1,24 @@
+import {CloudStorage} from "@tma.js/sdk-react";
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-function CreateProfile({ cloudStorage }) {
+function CreateProfile({ cloudStorageProp }) {
+  const cloudStorage = cloudStorageProp as CloudStorage;
   // const cloudStorage: CloudStorage = cloudStorageAny;
   function chStage(step: number) {
     console.log(step);
     console.log(cloudStorage);
+
     cloudStorage.getValues(['stage'])
-      .then((result: never) => {
+      .then((result) => {
         console.log(result);
-        // if ('stage' in result) {
-        //   const newStage = Number.parseInt(result['stage']) + step;
-        //   cloudStorage.saveValue('stage', newStage.toString());
-        // } else {
-        //   console.log('stage is not in storage, set it to 0');
-        //   cloudStorage.saveValue('stage', '0');
-        // }
+        if ('stage' in result) {
+          const newStage = Number.parseInt(result['stage']) + step;
+          cloudStorage.saveValue('stage', newStage.toString());
+        } else {
+          console.log('stage is not in storage, set it to 0');
+          cloudStorage.saveValue('stage', '0');
+        }
       });
   }
   return (
