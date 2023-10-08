@@ -15,11 +15,12 @@ function App() {
   const initData = useInitData();
   const mainButton = useMainButton();
   const backButton = useBackButton();
-  const cloudStorage = useCloudStorage()
+  const cloudStorage = useCloudStorage();
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [storage, setStorage] = useState({});
 
-  useClosingBehaviour()
+  useClosingBehaviour();
 
   useEffect(() => {
     webApp.ready();
@@ -43,14 +44,17 @@ function App() {
           .then(result => {
             console.log('VALUES')
             console.log(result);
+            setStorage(result);
+            console.log(storage);
 
             for (const key in result) {
               const value = result[key];
               console.log(key + ': ' + value);
             }
           });
-      })
+      });
     console.log('CloudStorage Done');
+    console.log(storage);
 
     mainButton.setText('Upload Photo');
     mainButton.show();
@@ -65,7 +69,7 @@ function App() {
     };
     // We know, that backButton and webApp will never change,
     // but let's follow React rules.
-  }, [backButton, cloudStorage, initData, mainButton, webApp]);
+  }, [backButton, cloudStorage, initData, mainButton, storage, webApp]);
 
   return (
     <>
