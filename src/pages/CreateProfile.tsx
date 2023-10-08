@@ -4,6 +4,8 @@ import {CloudStorage} from "@tma.js/sdk-react";
 // @ts-ignore
 function CreateProfile({ cloudStorageProp }) {
   const cloudStorage = cloudStorageProp as CloudStorage;
+  console.log(cloudStorageProp);
+  console.log(cloudStorage);
   // const cloudStorage: CloudStorage = cloudStorageAny;
   function chStage(step: number) {
     console.log(step);
