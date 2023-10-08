@@ -1,14 +1,29 @@
-import { useState } from 'react'
-import { SDKProvider, useSDK, useBackButton, useWebApp, useMainButton } from '@tma.js/sdk-react';
+import { useEffect, useState } from 'react';
+import { useBackButton, useWebApp, useMainButton } from '@tma.js/sdk-react';
 
-import './App.css'
+import './App.css';
 
 function App() {
+  const webApp = useWebApp();
   const mainButton = useMainButton();
   const backButton = useBackButton();
-  const webApp = useWebApp();
 
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    webApp.ready();
+
+    const listener = () => webApp.close();
+    backButton.on('click', listener);
+    backButton.show();
+
+    return () => {
+      backButton.off('click', listener);
+      backButton.hide();
+    };
+    // We know, that backButton and webApp will never change,
+    // but let's follow React rules.
+  }, [backButton, webApp]);
 
   return (
     <>
