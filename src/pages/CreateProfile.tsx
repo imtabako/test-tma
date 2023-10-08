@@ -1,22 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import {CloudStorage} from "@tma.js/sdk-react";
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-function CreateProfile({cloudStorageAny}) {
-  const cloudStorage: CloudStorage = cloudStorageAny;
+function CreateProfile({ cloudStorage }) {
+  // const cloudStorage: CloudStorage = cloudStorageAny;
   function chStage(step: number) {
+    console.log(step);
+    console.log(cloudStorage);
     cloudStorage.getValues(['stage'])
-      .then(result => {
+      .then((result: never) => {
         console.log(result);
-        if ('stage' in result) {
-          const newStage = +result['stage'] + step;
-          cloudStorage.saveValue('stage', newStage.toString());
-        } else {
-          console.log('stage is not in storage, set it to 0');
-          cloudStorage.saveValue('stage', '0');
-        }
+        // if ('stage' in result) {
+        //   const newStage = Number.parseInt(result['stage']) + step;
+        //   cloudStorage.saveValue('stage', newStage.toString());
+        // } else {
+        //   console.log('stage is not in storage, set it to 0');
+        //   cloudStorage.saveValue('stage', '0');
+        // }
       });
   }
   return (

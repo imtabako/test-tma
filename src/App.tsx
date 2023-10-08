@@ -84,7 +84,7 @@ function App() {
       <>
         <div className="container">
           <CreateProfile
-            cloudStorageAny={{cloudStorage}}
+            cloudStorage={{cloudStorage}}
           />
         </div>
       </>
